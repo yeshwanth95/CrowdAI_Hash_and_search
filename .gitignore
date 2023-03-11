@@ -1,2 +1,7 @@
 # Directories
 data
+debug_hashes
+hashes
+
+# Files
+val_in_train_first10.json
