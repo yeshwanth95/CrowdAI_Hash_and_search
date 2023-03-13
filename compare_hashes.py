@@ -54,22 +54,6 @@ def main(args):
     with multiprocessing.Pool() as pool:
         for result in tqdm(pool.imap(compare_single_needle_in_haystack, needles_hashes), total=len(needles_hashes)):
             duplicates_results.append(duplicates_per_image(result[0], result[1], result[2]))
-            # if len(duplicates_results) > 10:
-            #     with open(os.path.join(args.output_filename), "w") as f:
-            #         f.write(json.dumps(duplicates_results))
-            #     break
-    # for image in tqdm(needles_hashes):
-    #     v_name = image['image_name']
-    #     v_hash = image['hash']
-    #     v_hash = imagehash.hex_to_hash(v_hash)
-    #     duplicates = []
-    #     for sample in haystack_hashes:
-    #         t_name = sample['image_name']
-    #         t_hash = sample['hash']
-    #         t_hash = imagehash.hex_to_hash(t_hash)
-    #         if t_hash == v_hash:
-    #             duplicates.append(sample)
-    #     duplicates_results.append(duplicates_per_image(v_name, str(v_hash), duplicates))
 
     for n in duplicates_results:
         if len(n['duplicates_in_train']) > 0:
