@@ -34,7 +34,7 @@ def main(json_fn):
     html_body += "</body>\n"
 
     max_img = 70
-    base_dir = os.path.join("train", "images")
+    base_dir = os.path.join("data", "train", "images")
     for img_idx, uniq_img in enumerate(json_data.keys()):
         dup_img_list = json_data[uniq_img]
         # Add header
