@@ -2,6 +2,7 @@
 data
 debug_hashes
 hashes
+crowdai_dataLeakVis
 
 # Files
 val_in_train_first10.json

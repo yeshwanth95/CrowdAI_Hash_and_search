@@ -2,11 +2,22 @@ import json
 import os
 from copy import copy
 from tqdm import tqdm
+import argparse
 
 
-def main(json_fn):
+parser = argparse.ArgumentParser(
+    prog="Inspect image hashes for duplicates.",
+    description="Inspect image hashes for duplicates."
+)
+parser.add_argument('input_hash')
+parser.add_argument('output_dir')
+parser.add_argument('--output_filename', default="uniq_to_dup_imgs.json", required=False)
+args = parser.parse_args()
+
+
+def main(args):
     # json_fn = "train_noLeak_hashes.json"
-    with open(json_fn, 'r') as f_in:
+    with open(args.input_hash, 'r') as f_in:
         json_data = json.load(f_in)
 
     # Create img_to_hash_dict, where each img will be a unique key that will contain its 6 hashes.
@@ -56,7 +67,10 @@ def main(json_fn):
     uniq_img_to_dup_img_json = {}
     for k, v in uniq_img_to_dup_img_dict.items():
         uniq_img_to_dup_img_json[k] = list(v)
-    with open("uniq_to_dup_imgs.json", 'w') as f_out:
+
+    if not os.path.exists(args.output_dir):
+        os.makedirs(args.output_dir)
+    with open(os.path.join(args.output_dir, args.output_filename), 'w') as f_out:
         json.dump(uniq_img_to_dup_img_json, f_out, indent=2)
 
     # Print stats
@@ -73,4 +87,4 @@ def main(json_fn):
 
 
 if __name__ == '__main__':
-    main(json_fn=f"crowdai_noLeak/train_hashes/train_noLeak_hashes.json")
+    main(args)
