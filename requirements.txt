@@ -1,0 +1,8 @@
+certifi==2022.12.7
+colorama @ file:///home/conda/feedstock_root/build_artifacts/colorama_1666700638685/work
+ImageHash==4.3.1
+numpy==1.24.2
+Pillow==9.4.0
+PyWavelets==1.4.1
+scipy==1.10.1
+tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1677948868469/work
