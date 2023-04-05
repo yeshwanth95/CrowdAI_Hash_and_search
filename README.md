@@ -1,6 +1,6 @@
 # Efficient Deduplication and Leakage Detection in Large Scale Image Datasets with a focus on the CrowdAI Mapping Challenge Dataset
 
-### Yeshwanth Kumar Adimoolam, Bodhiswatta Chatterjee*, Charalambos Poullis and Melinos Averkiou
+### Yeshwanth Kumar Adimoolam, Bodhiswatta Chatterjee, Charalambos Poullis and Melinos Averkiou
 
 
 Official repository of the paper: "Efficient Deduplication and Leakage Detection in Large Scale Image Datasets with a focus on the CrowdAI Mapping Challenge Dataset".
