@@ -7,3 +7,4 @@ crowdai_dataLeakVis
 # Files
 val_in_train_first10.json
 *.json
+compare_hashes_old.py
