@@ -6,6 +6,11 @@
 Official repository of the paper: [Efficient Deduplication and Leakage Detection in Large Scale Image Datasets with a focus on the CrowdAI Mapping Challenge Dataset](https://arxiv.org/abs/2304.02296v1).
 
 
+## Updates
+
+April 13, 2023 - We release a data inspection web interface to manually inspect the extend of data leakage and duplication in the CrowdAI Mapping Challenge dataset. The web interface can be found at [datainspector.app](https://datainspector.app/)
+
+
 ## Highlights
 - We propose an easy-to-adopt de-duplication and leakage detection pipeline for large-scale image datasets that utilizes collision detection of perceptual hashes of images.
 - We employ the proposed de-duplication pipeline to identify and eliminate instances of data duplication and leakage in the CrowdAI mapping challenge dataset. Approximately 250k of the 280k training images were either exact or augmented duplicates.
