@@ -17,9 +17,9 @@ args = parser.parse_args()
 
 def duplicates_per_image(im_name, im_hash, duplicate_images: list):
     _result = {}
-    _result["train_image_name"] = im_name
-    _result["train_image_hash"] = im_hash
-    _result["duplicates_in_train"] = duplicate_images
+    _result["needle_image_name"] = im_name
+    _result["needle_image_hash"] = im_hash
+    _result["duplicates_in_haystack"] = duplicate_images
 
     return _result
 
