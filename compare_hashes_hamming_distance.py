@@ -1,0 +1,74 @@
+import json
+import os
+import argparse
+from tqdm import tqdm
+import numpy as np
+import imagehash
+import code
+
+
+parser = argparse.ArgumentParser(
+    prog="Compare hashes",
+    description="Compare two hash databases and store duplicates."
+)
+parser.add_argument('needles_hashfile')
+parser.add_argument('haystack_hashfile')
+parser.add_argument('--output_filename', required=True)
+# parser.add_argument('hamming_distance', default=0, required=False)
+args = parser.parse_args()
+
+
+def duplicates_per_image(im_name, im_hash, duplicate_images: list):
+    _result = {}
+    _result["needle_image_name"] = im_name
+    _result["needle_image_hash"] = im_hash
+    _result["duplicates_in_haystack"] = duplicate_images
+
+    return _result
+
+
+def find_duplicates(haystacks, needle, hamming_dist_threshold=5):
+    dists = haystacks - needle
+    dups_index = dists <= hamming_dist_threshold
+    # dups_index = dups_index.astype(np.float32)
+    return dups_index
+
+
+def main(args):
+    haystack_hashes_path = args.haystack_hashfile
+    needles_hashes_path = args.needles_hashfile
+
+    with open(haystack_hashes_path) as f:
+        haystack_hashes = json.loads(f.read())
+    with open(needles_hashes_path) as f:
+        needles_hashes = json.loads(f.read())
+    haystack_names_array, haystack_hash_array = [], []
+    for i in range(len(haystack_hashes)):
+        haystack_names_array.append(haystack_hashes[i]["image_name"])
+        haystack_hash_array.append(imagehash.hex_to_hash(haystack_hashes[i]["hash"]))
+
+    haystack_names_array = np.array(haystack_names_array)
+    haystack_hash_array = np.array(haystack_hash_array)
+
+    counter = 0
+    duplicates_results = []
+    for needle in tqdm(needles_hashes):
+        v_name = needle['image_name']
+        v_hash = imagehash.hex_to_hash(needle['hash'])
+
+        dups = find_duplicates(haystack_hash_array, v_hash)
+        # code.interact(local=locals())
+        # duplicates = haystack_names_array[haystack_hash_array == v_hash].tolist()
+        duplicates = haystack_names_array[dups].tolist()
+        if len(duplicates) > 0:
+            counter += 1
+        duplicates_results.append(duplicates_per_image(v_name, str(v_hash), duplicates))
+
+    print(f"{counter} images of {len(needles_hashes)} images in needles haves duplicates in haystack.")
+
+    with open(os.path.join(args.output_filename), "w") as f:
+            f.write(json.dumps(duplicates_results))
+
+
+if __name__ == "__main__":
+    main(args)
