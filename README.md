@@ -6,9 +6,9 @@
 Official repository of the paper: [Efficient Deduplication and Leakage Detection in Large Scale Image Datasets with a focus on the CrowdAI Mapping Challenge Dataset](https://arxiv.org/abs/2304.02296v1).
 
 
-## Updates
+<!-- ## Updates
 
-April 13, 2023 - We release a data inspection web interface to manually inspect the extend of data leakage and duplication in the CrowdAI Mapping Challenge dataset. The web interface can be found at [datainspector.app](https://datainspector.app/)
+April 13, 2023 - We release a data inspection web interface to manually inspect the extend of data leakage and duplication in the CrowdAI Mapping Challenge dataset. The web interface can be found at [datainspector.app](https://datainspector.app/) -->
 
 
 ## Highlights
