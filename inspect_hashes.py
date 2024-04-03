@@ -1,3 +1,4 @@
+import code
 import json
 import os
 from copy import copy
@@ -75,15 +76,21 @@ def main(args):
 
     # Print stats
     dup_imgs = set()
+    dup_imgs_aug = list()
     for dup_img in uniq_img_to_dup_img_dict.values():
         dup_imgs.update(dup_img)
+        dup_imgs_aug.extend(list(dup_img))
     n_total_imgs = len(img_to_hash_dict)
     n_unique_imgs = len(uniq_img_to_dup_img_dict.keys())
     n_dup_imgs = len(dup_imgs)
+    # code.interact(local=locals())
+    n_dup_imgs_aug = len(set(dup_imgs_aug))
     assert n_total_imgs == n_unique_imgs + n_dup_imgs
     print(f"Total images: {n_total_imgs}")
     print(f"Unique images: {n_unique_imgs}")
     print(f"Duplicate images: {n_dup_imgs}")
+    print(f"Duplicate images (Aug): {n_dup_imgs_aug}")
+    # print(dup_imgs)
 
 
 if __name__ == '__main__':

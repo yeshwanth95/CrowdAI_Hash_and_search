@@ -4,6 +4,7 @@ debug_hashes
 hashes
 crowdai_dataLeakVis
 temp_vis
+vis_collisions
 
 # Files
 val_in_train_first10.json
